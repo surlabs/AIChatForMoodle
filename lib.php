@@ -96,24 +96,6 @@ function removeChatMessages($aichat_id, $userid) {
     return false;
 }
 
-function aichat_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options=array()) {
-    if ($context->contextlevel != CONTEXT_MODULE) {
-        return false;
-    }
-
-    require_login($course, true, $cm);
-
-    $itemid = array_shift($args);
-    $relativepath = implode('/', $args);
-    $fullpath = "/$context->id/mod_aichat/$filearea/$itemid/$relativepath";
-    $fs = get_file_storage();
-    if (!$file = $fs->get_file_by_hash(sha1($fullpath)) or $file->is_directory()) {
-        return false;
-    }
-
-    send_stored_file($file, 0, 0, $forcedownload, $options);
-}
-
 function aichat_extend_navigation(global_navigation $nav) {
     global $PAGE;
     $PAGE->requires->css('/mod/aichat/styles.css');
