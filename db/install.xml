@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLDB PATH="mod/aichat/db" VERSION="1" COMMENT="AI Chat tables">
+    <TABLES>
+        <TABLE NAME="aichat" COMMENT="AI Chat Instances">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true"/>
+                <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true"/>
+                <FIELD NAME="intro" TYPE="text" NOTNULL="false"/>
+                <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true"/>
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true"/>
+                <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="aichat_messages" COMMENT="AI Chat Messages">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="aichat_id" TYPE="int" LENGTH="10" NOTNULL="true"/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true"/>
+                <FIELD NAME="messages" TYPE="text" NOTNULL="false"/>
+                <FIELD NAME="timestamp" TYPE="int" LENGTH="10" NOTNULL="true"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="foreign_aichat" TYPE="foreign" FIELDS="aichat_id" REFFIELDS="id" REFTABLE="aichat" ONDELETE="CASCADE"/>
+            </KEYS>
+        </TABLE>
+    </TABLES>
+</XMLDB>
