@@ -95,8 +95,3 @@ function removeChatMessages($aichat_id, $userid) {
 
     return false;
 }
-
-function aichat_extend_navigation(global_navigation $nav) {
-    global $PAGE;
-    $PAGE->requires->css('/mod/aichat/styles.css');
-}
